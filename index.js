@@ -40,16 +40,55 @@ app.post("/register", async (req, res) => {
   res.json("User register");
 });
 
-app.post("/contact", async (req, res) => {
+app.get("/register", async (req, res) => {
+  res.json({
+    user: await UserController.findAll(),
+  });
+});
+
+app.delete("/register/:id", async (req, res) => {
+  console.log(req.params.id);
+  const id = req.params.id;
+  await UserController.delete(id);
+  res.json("User deleted");
+});
+
+app.post("/contactus", async (req, res) => {
   console.log(req.body);
   await ContactController.create(req.body);
   res.json("Message sent");
+});
+
+app.get("/contactus", async (req, res) => {
+  res.json({
+    user: await ContactController.findAll(),
+  });
+});
+
+app.delete("/contactus/:id", async (req, res) => {
+  console.log(req.params.id);
+  const id = req.params.id;
+  await ContactController.delete(id);
+  res.json("Message deleted");
 });
 
 app.post("/subscribe", async (req, res) => {
   console.log(req.body);
   await SubscriptionController.create(req.body);
   res.json("Suscription completed");
+});
+
+app.get("/subscribe", async (req, res) => {
+  res.json({
+    user: await SubscriptionController.findAll(),
+  });
+});
+
+app.delete("/subscribe/:id", async (req, res) => {
+  console.log(req.params.id);
+  const id = req.params.id;
+  await SubscriptionController.delete(id);
+  res.json("Subscriptor deleted");
 });
 
 app.listen(PORT, () => {

@@ -1,4 +1,4 @@
-const User = require('../models/user');
+const Subscription = require('../models/subscription');
 
 class SubscriptionController {
 
@@ -13,7 +13,7 @@ class SubscriptionController {
 
     async create(user){
         try {
-            return await User.create(user)
+            return await Subscription.create(user)
         } catch (error) {
             throw error;
         }
@@ -21,7 +21,7 @@ class SubscriptionController {
 
     async delete(id){
         try {
-            await User.findByIdAndDelete(id)
+            await Subscription.findByIdAndDelete(id)
         } catch (error) {
             throw error;
         }
